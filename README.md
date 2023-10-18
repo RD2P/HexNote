@@ -1,8 +1,8 @@
 # HexNote: Full-Stack Note Encryption App
 
-![Alt text](image.png)
+![image](https://github.com/RD2P/HexNote/assets/66042641/1dd4946d-7799-4c66-9579-c4e10a75fcc9)
 
-HexNote is a full-stack web application that allows users to create and save notes with text encoded in hexadecimal format. These notes can be saved as text files in a data folder.
+HexNote is a full-stack web application that allows you to create and save notes with text encoded in hexadecimal format. These notes can be saved as text files in a data folder.
 
 ## Table of Contents
 
