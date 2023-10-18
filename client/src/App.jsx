@@ -7,8 +7,9 @@ import './App.css'
 
 function App() {
   
-  const [hexed, setHexed] = useState([])
-  const [notes, setNotes] = useState([])
+  const [hexed, setHexed] = useState([])  //array of hexed lines of notes
+  const [notes, setNotes] = useState([])  //array of note files, will be fetched from server
+  const [sendButtonClicked, setSendbuttonClicked] = useState(false)
   const textareaRef = useRef(null)
 
 
@@ -28,12 +29,13 @@ function App() {
         } else {
           console.log('Something went wrong')
         }
+        console.log("notes rendered")
       } catch (err) {
-          console.log(err)
+        console.log(err)
       }
     }
     getNotes()
-  },[hexed])
+  },[sendButtonClicked])
 
 
   const handleKey = (e) => {
@@ -45,27 +47,31 @@ function App() {
   }
 
   const handleSend = () => {
-    const sendData = async () => {
-      try {
-        const response = await fetch('http://localhost:3001/api/test', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(hexed)
-        })
-        if (response.ok) {
-          console.log('Data sent successfully')
-        } else {
-          console.log('Failed to send')
+    if (hexed.length) {    //if hexed array has items, execute code below, otherwise do nothing
+      const sendData = async () => {
+        try {
+          //POST the hexed array to the server using fetch
+          const response = await fetch('http://localhost:3001/api/test', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(hexed)
+          })
+          if (response.ok) {
+            console.log('Data sent successfully')
+          } else {
+            console.log('Failed to send')
+          }
+        } catch (err){
+          console.log(err)
         }
-      } catch (err){
-        console.log(err)
       }
+      
+      sendData()
+      setHexed([]) //reset the hexed array for a fresh note
+      setSendbuttonClicked(prevState => !prevState)
     }
-
-    sendData()
-    setHexed([])
   }
 
   return (
