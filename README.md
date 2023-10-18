@@ -1,6 +1,6 @@
 # HexNote: Full-Stack Note Encryption App
 
-HexNote is a full-stack web application that allows users to create and save notes with text encoded in hexadecimal format. These notes can be saved as text files in the user's computer.
+HexNote is a full-stack web application that allows users to create and save notes with text encoded in hexadecimal format. These notes can be saved as text files in a data folder.
 
 ## Table of Contents
 
@@ -23,14 +23,16 @@ To run HexNote on your local machine, follow these steps:
 
    ```shell
    cd HexNote
-3. Navigate to the client directory
+3. Navigate to the client directory and install client dependencies
+
+    ```shell
+    cd client
+    npm install
+4. Navigate to the server directory and install the server dependencies
 
     ```shell
     cd ..
-    cd client
-4. Install client side dependencies
-
-   ```shell
+    cd server
     npm install
 ## Usage
 
@@ -39,7 +41,6 @@ To start the app, follow these steps:
 1. In the server/ directory, start the server:
 
     ```shell
-    cd server
     npm start
 2. In a separate terminal, cd into client/ and start the React app:
 
@@ -52,7 +53,7 @@ To start the app, follow these steps:
 - Start writing notes in the text area
 - The hexer function encodes each line (after each press of the "enter" key) to hexadecimal as you type
 - After each note, click "Send to notebook"
-- The note is saved to your computer and appears on the left sidebar, titled with the date and time that it was made
+- The note is saved in the data folder and is rendered on the left sidebar, titled with the date and time that it was made
 ## Folder Structure
     HexNote-Full-Stack/
       ├── client/               # React client-side code
@@ -63,7 +64,7 @@ To start the app, follow these steps:
       |    ├── index.html       # Entry point for React app
       ├── server/               # Express server-side code
       |    ├── server.js        # Entry point for the server
-      |    ├── data/            # Encoded notes saved here
+      |    ├── data/            # Encoded notes are saved here
 ## Technologies Used
 - Node.js
 - Express.js
