@@ -4,32 +4,39 @@ h1 {
 }
 
 .body {
+  margin: 0;
   display: flex;
+  justify-content: center;
   padding: 2rem;
+  border: 1px solid red;
 }
 
-.container {
+.main {
   width: 80%;
-  padding: 0;
-  margin: 0 auto;
-  height: 100vh;
+  padding: 0 2rem;
+  margin: 0;
+  border: 1px solid white;
 }
 
-main {
-  width: auto;
-
+.sidebar {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid white;
 }
 
 .textoutput {
   background-color: grey;
+  width: 100%;
   border-radius: 10px;
   padding: 1rem 2rem;
   margin-bottom: 2rem;
   overflow-wrap: break-word;
+  min-height: 6rem;
 }
 
 .textarea-wrapper {
-  width: 90%;
   margin: 0 auto;
   min-height: 3rem;
   padding: 0;
@@ -63,7 +70,7 @@ button {
   font-size: 1.3rem;
   color: white;
   background-color: var(--clr-orange);
-  margin-top: 2rem;
+  margin: 1rem 0.5rem;
   border-radius: 10px;
   border: none;
   padding: 0.5rem 2rem;
@@ -72,4 +79,10 @@ button {
 button:hover {
   opacity: 0.8;
   cursor: pointer;
+}
+
+/* SIDEBAR */
+
+.note-title {
+  margin-top: 0;
 }
