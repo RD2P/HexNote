@@ -15,7 +15,10 @@ app.get('/api/notes', (req,res) => {
   let notes = []
   fs.readdir(dataFolder, (err, files) => {
     if (err) throw err
-    files.forEach(file => notes.push(file))
+    files.forEach(file => {
+      const notename = file.substring(0, file.lastIndexOf('.'))
+      notes.push(notename)
+  })
     res.send(notes)
   })
 })
