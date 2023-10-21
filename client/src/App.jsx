@@ -84,8 +84,6 @@ function App() {
     <>
       <h1>Hexer</h1>
       <div className="body">
-        {/* <div className="container"> */}
-        {/* <div className="sidebar"> */}
           <div className="sidebar">
             {
               notes.map(note => (
@@ -95,7 +93,7 @@ function App() {
               ))
             }
           </div>
-        {/* </div> */}
+   
           <div className="main">
             <div className="textoutput">
               {
@@ -109,7 +107,6 @@ function App() {
                 <button className="send-button" onClick={handleSend}>Send to notebook</button>
               </div>
           </div>
-        {/* </div> */}
       </div>
     </>
   
