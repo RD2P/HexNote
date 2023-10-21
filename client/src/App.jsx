@@ -82,7 +82,7 @@ function App() {
 
   return (
     <>
-      <h1>Hexer</h1>
+      <h1>Hex Note</h1>
       <div className="body">
           <div className="sidebar">
             {
