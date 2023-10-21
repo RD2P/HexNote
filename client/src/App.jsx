@@ -12,7 +12,7 @@ function App() {
   const [sendButtonClicked, setSendbuttonClicked] = useState(false)
   const textareaRef = useRef(null)
 
-
+  //gets notes array from server
   useEffect(() => {
     const getNotes = async () => {
       try {
@@ -37,20 +37,22 @@ function App() {
     getNotes()
   },[sendButtonClicked])
 
-
+  //when enter key pressed in text area, hexes text and adds to hexed array
   const handleKey = (e) => {
     if (e.key === "Enter"){
       const hex = stringToHex(textareaRef.current.value)
       setHexed([...hexed, hex])
       textareaRef.current.value = ''
+      window.scrollTo(0, document.body.scrollHeight)
     }
   }
 
+  //when send btn clicked, adds hexed array to notes array
   const handleSend = () => {
     if (hexed.length) {    //if hexed array has items, execute code below, otherwise do nothing
       const sendData = async () => {
         try {
-          //POST the hexed array to the server using fetch
+          //POST the hexed array to the server using fetch api
           const response = await fetch('http://localhost:3001/api/test', {
             method: 'POST',
             headers: {
@@ -74,21 +76,27 @@ function App() {
     }
   }
 
+  const handleNoteClicked = () => {
+    console.log('clicked')
+  }
+
   return (
     <>
-        <h1>Hexer</h1>
-        <div className="body">
+      <h1>Hexer</h1>
+      <div className="body">
+        {/* <div className="container"> */}
+        {/* <div className="sidebar"> */}
           <div className="sidebar">
-            <div className="notes-container">
-              {
-                notes.map(note => (
-                  <p id={note}>{note}</p>
-                ))
-              }
-            </div>
+            {
+              notes.map(note => (
+                <button class='note-title' id={note} onClick={handleNoteClicked()}>
+                  {note}
+                </button>
+              ))
+            }
           </div>
-                <div className="container">
-          <main>
+        {/* </div> */}
+          <div className="main">
             <div className="textoutput">
               {
                 hexed.map((item) => <HexedOutput key={uuidv4()} hexed={item}/>)
@@ -100,9 +108,10 @@ function App() {
               <div className="button-wrapper">
                 <button className="send-button" onClick={handleSend}>Send to notebook</button>
               </div>
-          </main>
-                </div>
-        </div></>
+          </div>
+        {/* </div> */}
+      </div>
+    </>
   
   )
 }
