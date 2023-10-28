@@ -24,7 +24,7 @@ app.get('/api/notes', (req, res) => {
 })
 
 //handles POST, makes new file for encoded note with date as title and saves to data/
-app.post('/api/test', (req, res) => {
+app.post('/api/notes', (req, res) => {
   const receivedData = JSON.stringify(req.body);
   const title = date.format(new Date(), 'DD MMM HH-mm-ss')
   fs.writeFile(path.join(__dirname, 'data', `${String(title)}.txt`), receivedData, (err) => {
@@ -35,6 +35,6 @@ app.post('/api/test', (req, res) => {
   res.send('Data received');
 });
 
-const port = process.env || 3001
+const port = process.env.PORT || 3001
 
 app.listen(3001, () => console.log(`Listening on port ${port}`))
