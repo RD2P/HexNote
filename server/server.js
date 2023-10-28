@@ -10,15 +10,15 @@ app.use(express.json())
 
 const dataFolder = path.join(__dirname, 'data')
 
-//reads files in the data folder, where encoded notes are stored, an serves to client
-app.get('/api/notes', (req,res) => {
+//reads files in the data folder, where encoded notes are stored, and serves to client
+app.get('/api/notes', (req, res) => {
   let notes = []
   fs.readdir(dataFolder, (err, files) => {
     if (err) throw err
     files.forEach(file => {
       const notename = file.substring(0, file.lastIndexOf('.'))
       notes.push(notename)
-  })
+    })
     res.send(notes)
   })
 })
@@ -35,4 +35,6 @@ app.post('/api/test', (req, res) => {
   res.send('Data received');
 });
 
-app.listen(3001, () => console.log("Listening on port 3001"))
+const port = process.env || 3001
+
+app.listen(3001, () => console.log(`Listening on port ${port}`))
