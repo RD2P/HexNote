@@ -21,21 +21,29 @@ To run HexNote on your local machine, follow these steps:
 
    ```shell
    git clone https://github.com/RD2P/HexNote.git
+   ```
+
 2. Navigate to the project directory
 
    ```shell
    cd HexNote
+   ```
+
 3. Navigate to the client directory and install client dependencies
 
     ```shell
     cd client
     npm install
+    ```
+
 4. Navigate to the server directory and install the server dependencies
 
     ```shell
     cd ..
     cd server
     npm install
+    ```
+
 ## Usage
 
 To start the app, follow these steps:
@@ -44,19 +52,26 @@ To start the app, follow these steps:
 
     ```shell
     npm start
+    ```
+
 2. In a separate terminal, cd into client/ and start the React app:
 
     ```shell
     cd client
     npm start
+    ```
+
 3. Open the React client on your web browser.
 
 ## Features
+
 - Start writing notes in the text area
 - The hexer function encodes each line (after each press of the "enter" key) to hexadecimal as you type
 - After each note, click "Send to notebook"
 - The note is saved in the data folder and is rendered on the left sidebar, titled with the date and time that it was made
+
 ## Folder Structure
+
     HexNote-Full-Stack/
       ├── client/               # React client-side code
       |    ├── js/
@@ -67,11 +82,15 @@ To start the app, follow these steps:
       ├── server/               # Express server-side code
       |    ├── server.js        # Entry point for the server
       |    ├── data/            # Encoded notes are saved here
+
 ## Technologies Used
+
 - Node.js
 - Express.js
 - React
+
 ## Author
+
 - Raphael
 
 Feel free to report issues and provide feedback!
