@@ -23,6 +23,13 @@ app.get('/api/notes', (req, res) => {
   })
 })
 
+//grab single note
+app.get(`/api/notes/:id`, (req, res) => {
+  const { id } = req.params
+  const hexnote = fs.readFileSync(path.join(dataFolder, `${id}.txt`), 'utf8')
+  res.send(hexnote)
+})
+
 //handles POST, makes new file for encoded note with date as title and saves to data/
 app.post('/api/notes', (req, res) => {
   const receivedData = JSON.stringify(req.body);
