@@ -25,11 +25,11 @@ function App() {
         const data = await response.json()
         setNotes(data)
         if (response.ok) {
-          console.log('Fetch successful')
+          // console.log('Fetch successful')
         } else {
-          console.log('Something went wrong')
+          // console.log('Something went wrong')
         }
-        console.log("notes rendered")
+        // console.log("notes rendered")
       } catch (err) {
         console.log(err)
       }
@@ -53,7 +53,7 @@ function App() {
       const sendData = async () => {
         try {
           //POST the hexed array to the server using fetch api
-          const response = await fetch('http://localhost:3001/api/test', {
+          const response = await fetch('http://localhost:3001/api/notes', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -76,8 +76,35 @@ function App() {
     }
   }
 
-  const handleNoteClicked = () => {
-    console.log('clicked')
+  const handleNoteClicked = (e) => {
+    //grab the textoutput
+    const textoutput = document.querySelector('.textoutput')
+
+    //grab the note ID
+    const {id: noteId} = e.target
+
+    //add note title to textarea
+    textoutput.innerText = `${noteId}\n`
+
+    //grab the contents of hexed note using fetch
+    const grabNote = async () => {
+      try {
+        const response = await fetch(`http://localhost:3001/api/notes/${noteId}`, {
+          method: 'GET'
+        })
+
+        const hexnote = await response.json()
+
+        hexnote.map((note) => {
+          textoutput.innerText += `\n ${note}`
+        })
+
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
+    grabNote()
   }
 
   return (
@@ -87,7 +114,11 @@ function App() {
           <div className="sidebar">
             {
               notes.map(note => (
-                <button class='note-title' id={note} onClick={handleNoteClicked()}>
+                <button
+                  className='note-title'
+                  key={note}
+                  id={note}
+                  onClick={handleNoteClicked}>
                   {note}
                 </button>
               ))
